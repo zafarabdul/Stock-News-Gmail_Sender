@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock-Alert.com</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainpage.css' %}" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="330500623992-rpuqfbfufbfpj70537nm1tihue0kqoqb.apps.googleusercontent.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tauri&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body style="background-color: black">
+    <nav>
+        <a href="{% url 'index' %}">
+            <span class="logo">
+                <b style="color: rgb(255, 165, 10)">Stock </b>
+                <b style="color: #328be4">Alert</b>
+            </span>
+        </a>
+        <div class="right">
+            <a href="{% url 'index' %}">
+                <div class="home">Home</div>
+            </a>
+            <a href="port.html">
+                <div class="port">Portfolio</div>
+            </a>
+            {% if name%}
+            <a href="logout.html">
+                <div class="signup">Log out</div>
+            </a>
+            {%else %}
+            <a href="signup.html">
+                <div class="signup">Sign Up</div>
+            </a>
+            {% endif%}
+        </div>
+    </nav>
+    <section style="color: white;">
+        <div class="logo" style="margin-left:5%;"><h2>
+            Welcome {{ name }}
+        </h2></div>
+        <h1 style='margin-left:5%;'>Stock Information</h1>
+        {% if stock_info %}
+        <div class="container">       <table border="0",class="table">
+            <tr>
+                <td>Stock 1</td>
+                <td style="display:flex ; justify-content:center;">
+                    {% if stock_info.st1 %}
+                        {{ stock_info.st1 }}<pre> </pre>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="act" value="delete"/>
+                            <input type="hidden" name="gmaildel" value="{{ name }}" />
+                            <input type="hidden" name="st1del" value="{{stock_info.st1}}">
+                            <button class="del-btn">Delete</button>
+                        </form>
+                    {% else %}
+                        No data<pre> </pre>
+                        <button class="add-btn" onclick="openAddModal('st1')">Add</button>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Stock 2</td>
+                <td style="display:flex ; justify-content:center;">
+                    {% if stock_info.st2 %}
+                        {{ stock_info.st2 }}<pre> </pre>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="act" value="delete"/>
+                            <input type="hidden" name="gmaildel" value="{{ name }}" />
+                            <input type="hidden" name="st2del" value="{{stock_info.st2}}">
+                            <button class="del-btn">Delete</button>
+                        </form>
+                    {% else %}
+                        No data<pre> </pre>
+                        <button class="add-btn" onclick="openAddModal('st2')">Add</button>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Stock 3</td>
+                <td style="display:flex ; justify-content:center;">
+                    {% if stock_info.st3 %}
+                        {{ stock_info.st3 }}<pre> </pre>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="act" value="delete"/>
+                            <input type="hidden" name="gmaildel" value="{{ name }}" />
+                            <input type="hidden" name="st3del" value="{{stock_info.st3}}">
+                            <button class="del-btn">Delete</button>
+                        </form>
+                    {% else %}
+                        No data<pre> </pre>
+                        <button class="add-btn" onclick="openAddModal('st3')">Add</button>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Stock 4</td>
+                <td style="display:flex ; justify-content:center;">
+                    {% if stock_info.st4 %}
+                        {{ stock_info.st4 }}<pre> </pre>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="act" value="delete"/>
+                            <input type="hidden" name="gmaildel" value="{{ name }}" />
+                            <input type="hidden" name="st4del" value="{{stock_info.st4}}">
+                            <button class="del-btn">Delete</button>
+                        </form>
+                    {% else %}
+                        No data<pre> </pre>
+                        <button class="add-btn" onclick="openAddModal('st4')">Add</button>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Stock 5</td>
+                <td style="display:flex ; justify-content:center;">
+                    {% if stock_info.st5 %}
+                        {{ stock_info.st5 }}<pre> </pre>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="act" value="delete"/>
+                            <input type="hidden" name="gmaildel" value="{{ name }}" />
+                            <input type="hidden" name="st5del" value="{{stock_info.st5}}">
+                            <button class="del-btn" >Delete</button>
+                        </form>
+                    {% else %}
+                        No data<pre> </pre>
+                        <button class="add-btn" onclick="openAddModal('st5')">Add</button>
+                    {% endif %}
+                </td>
+            </tr>
+        </table></div>
+        {% else %}
+        <p style="margin-left:5%">No stock information found for the specified name. Please sign in or log in.</p>
+        <a href="{% url 'index' %}">
+            <button style="background-color: #328be4; color: white; padding: 10px 20px; border: none; border-radius: 5px;margin-left:5%; cursor: pointer;">
+                Go to Home
+            </button>
+        </a>
+        {% endif %}
+    </section>
+    <footer style="color: #ee7cbd; background-color: rgb(36, 36, 36); margin-top: 100px;">
+        <div class="foottop" style="display: flex">
+            <div class="footmid">
+                <div style="margin-bottom: 15px"><b>Quick Links</b></div>
+                <div class="footwhite">
+                    <a href="{% url 'index' %}"><div class="footwhiteitems">Home</div></a>
+                    <a href="NewsAlert/port.html"><div class="footwhiteitems">Portfolio</div></a>
+                    {% if name%}
+                        <a href="{% url 'logout' %}"><div class="footwhiteitems">Log Out</div></a>
+                    {%else %}
+                        <a href="{% url 'signup' %}"><div class="footwhiteitems">SignUp</div></a>
+                    {% endif%}
+                </div>
+            </div>
+        </div>
+        <div class="footrightbottom">
+            <div style="margin-bottom: 15px; font-size: 30px"><b>Contact Us</b></div>
+            <a href="#" class="fa fa-linkedin"></a>
+            <a href="#" class="fa fa-google"></a>
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+        </div>
+    </footer>
+    
+    <!-- Modal for Adding Stock -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddModal()">&times;</span>
+            <div id='fullbox'>
+                {% if messages %}
+                <div class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="errorbox"{% endif %}>{{ message }}</p>
+                {% endfor %}
+                </div>
+                {% endif %}
+                <h2>Add Stock Information</h2>
+                    <form id="addStockForm" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="act" value="add"/>
+                        <input type="hidden" name="gmail" value="{{ name }}" />
+                        Stock Name:
+                        <input type="text" id="stockField" class='boxes2' name="stock_name" required/>
+                        <div>
+                            <label for="stockValue">Stock Value :</label>
+                            <input type="text" class='boxes2'  id="stockValue" name="stock_value" />
+                        </div>
+                        <button id='button' type="submit">Add Stock</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+    
+    <script>
+        function openAddModal(field) {
+            // Open modal and set the hidden field's value
+            document.getElementById('stockField').value = field;
+            document.getElementById('addModal').style.display = 'block';
+        }
+
+        function closeAddModal() {
+            // Close the modal
+            document.getElementById('addModal').style.display = 'none';
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('addModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
