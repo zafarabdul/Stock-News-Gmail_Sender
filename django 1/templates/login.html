@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainpage.css'%}" />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="330500623992-rpuqfbfufbfpj70537nm1tihue0kqoqb.apps.googleusercontent.com"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tauri&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body style="background-color: black">
+    <nav>
+      <a href="{% url 'index' %}"><span class="logo"
+          ><b style="color: rgb(255, 165, 10)">Stock </b
+          ><b style="color: #328be4">Alert</b></span
+        ></a
+      >
+      <div class="right">
+        <a href="{% url 'index' %}">
+          <div class="home">Home</div>
+        </a>
+        <a href="NewsAlert/port.html">
+          <div class="port">Portfolio</div>
+        </a>
+        {% if email%}
+        <a href="logout.html">
+            <div class="signup">Log Out</div>
+        </a>
+        {%else %}
+        <a href="signup.html">
+            <div class="signup">Sign Up</div>
+        </a>
+        {% endif%}
+      </div>
+    </nav>
+    <section>
+      <form method="POST">
+        {% csrf_token %}
+        <div id="fullbox">
+          {% if messages %}
+          <div class="messages">
+          {% for message in messages %}
+            <p{% if message.tags %} class="errorbox"{% endif %}>{{ message }}</p>
+          {% endfor %}
+          </div>
+          {% endif %}
+          <h1>Log In Page</h1>
+          <input
+            name="gmail"
+            class="boxes"
+            type="gmail"
+            placeholder="Enter Gmail"
+            required
+          /><br />
+          <input
+          name="password"
+            class="boxes"
+            type="password"
+            placeholder="Enter Password"
+            required
+          /><br />
+          <button id="button">Log In</button>
+          <a href="{% url 'signup' %}"><h5>Dont' Have Account ?</h5></a>
+        </div>
+      </form>
+    </section>
+    <footer
+      style="
+        color: #ee7cbd;
+        background-color: rgb(36, 36, 36);
+        margin-top: 100px;
+      "
+    >
+      <div class="foottop" style="display: flex">
+        <div class="footmid">
+          <div style="margin-bottom: 15px"><b>Quick Links</b></div>
+          <div class="footwhite">
+            <a href="{% url 'index' %}"><div class="footwhiteitems">Home</div></a>
+            <a href="/NewsAlert/port.html">Login</a><div class="footwhiteitems">Portfolio</div></a>
+            <a href="signup.html"><div class="footwhiteitems">SignUp</div></a>
+          </div>
+        </div>
+      </div>
+      <div class="footrightbottom">
+        <div style="margin-bottom: 15px; font-size: 30px">
+          <b>Contact Us</b>
+        </div>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-google"></a>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-instagram"></a>
+      </div>
+    </footer>
+    <script src="mainpage.js"></script>
+  </body>
+</html>

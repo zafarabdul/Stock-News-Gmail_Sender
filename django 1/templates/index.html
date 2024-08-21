@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>HOME PAGE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mainpage.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tauri&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body style="background-color: black">
+    <nav>
+      <a href="{% url 'index' %}">
+      <span class="logo"
+          ><b style="color: rgb(255, 165, 10)">Stock </b
+          ><b style="color: #328be4">Alert</b></span
+        ></a
+      >
+      <div class="right">
+        <a href="{% url 'index' %}">
+          <div class="home">Home</div>
+        </a>
+        <a href="NewsAlert/port.html">
+          <div class="port">Portfolio</div>
+        </a>
+        {% if email%}
+          <a href="logout.html">
+            <div class="signup">Log out</div>
+          </a>
+        {%else %}
+          <a href="signup.html">
+            <div class="signup">Sign Up</div>
+          </a>
+        {% endif%}
+      </div>
+    </nav>
+    <section class="firsts">
+      <div class="sbox">
+        <h1 id="shead">Spend Your Time Without Stress</h1>
+        <div class="spara" style="color: white">
+          Time to take rest from the world. We will notify you on time.
+        </div>
+        {% if email%}
+        <a href="/NewsAlert/port.html"><button id="start"><b>Go to Portfolio</b></button></a>
+        {%else %}
+        <a href="{% url 'login' %}"><button id="start"><b>LogIn</b></button></a>
+          </a>
+        {% endif%}
+      </div>
+      <img class="image" src="/static/rest.png" height="50%" width="50%" />
+    </section>
+    <section class="seconds">
+      <div class="Alertsec">Price Alerts</div>
+      <div class="newsec">Get News</div>
+      <div class="more">...More...</div>
+    </section>
+    <footer
+      style="
+        color: #ee7cbd;
+        background-color: rgb(36, 36, 36);
+        margin-top: 100px;
+      "
+    >
+      <div class="foottop" style="display: flex">
+        <div class="footmid">
+          <div style="margin-bottom: 15px"><b>Quick Links</b></div>
+          <div class="footwhite">
+            <a href="{% url 'index' %}"><div class="footwhiteitems">Home</div></a>
+            <a href="NewsAlert/port.html"><div class="footwhiteitems">Portfolio</div></a>
+            {% if email%}
+              <a href="{% url 'logout' %}"><div class="footwhiteitems">Log Out</div></a>
+            {%else %}
+              <a href="{% url 'signup' %}"><div class="footwhiteitems">SignUp</div></a>
+            {% endif%}
+          </div>
+        </div>
+      </div>
+      <div class="footrightbottom">
+        <div style="margin-bottom: 15px; font-size: 30px">
+          <b>Contact Us</b>
+        </div>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-google"></a>
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-instagram"></a>
+      </div>
+    </footer>
+  </body>
+</html>
