@@ -10,7 +10,7 @@ server.starttls()
 def sendg(gmail,title,url,date):
     server.login('zafarabdul05@gmail.com','bvax fnhl djey uhkl')
     message = f"Subject: Latest News Update\n\nTitle: {title}\nURL: {url}\nPublished At: {date}"
-    server.sendmail('zafarabdul05@gmail.com',gmail,message)
+    server.sendmail('zafarabdul05@gmail.com',gmail,message.encode('utf-8'))
     print('mail send to :',gmail)
 def fetch_article(URL):
     try:
